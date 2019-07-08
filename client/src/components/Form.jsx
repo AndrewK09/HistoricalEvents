@@ -47,7 +47,6 @@ export default class Form extends Component {
 
   async handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state.query);
     await this.props.handleOptions('query', this.state.query);
     await this.setState({ query: '' });
   }
@@ -101,8 +100,13 @@ export default class Form extends Component {
               onChange={this.handleSelect}
             >
               <option value=''>No Filter</option>
-              {this.state.category1.map(category => {
-                return <option value={category}>{category}</option>;
+
+              {this.state.category1.map((category, i) => {
+                return (
+                  <option key={i} value={category}>
+                    {category}
+                  </option>
+                );
               })}
             </select>
           </label>
@@ -114,8 +118,12 @@ export default class Form extends Component {
               onChange={this.handleSelect}
             >
               <option value=''>No Filter</option>
-              {this.state.category2.map(category => {
-                return <option value={category}>{category}</option>;
+              {this.state.category2.map((category, i) => {
+                return (
+                  <option key={i} value={category}>
+                    {category}
+                  </option>
+                );
               })}
             </select>
           </label>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import ReactPaginate from 'react-paginate';
 import axios from 'axios';
 
 import Header from './Header.jsx';
@@ -14,12 +15,25 @@ export default class App extends Component {
       query: '',
       sortBy: '',
       selected1: '',
-      selected2: ''
+      selected2: '',
+      pageCount: 0
     };
     this.updatePage = this.updatePage.bind(this);
     this.updateOptions = this.updateOptions.bind(this);
     this.resetOptions = this.resetOptions.bind(this);
+    this.handlePageClick = this.handlePageClick.bind(this);
   }
+  //======================================================================
+
+  async handlePageClick(data) {
+    let selected = data.selected;
+    await this.setState({
+      page: 1 + selected
+    });
+    this.updatePage();
+  }
+
+  //======================================================================
 
   async updatePage() {
     const { page, query, selected1, selected2 } = this.state;
@@ -30,9 +44,11 @@ export default class App extends Component {
     if (query) url += q;
     if (selected1) url += cat1;
     if (selected2) url += cat2;
-
     const res = await axios.get(url);
-    this.setState({ list: res.data });
+    this.setState({
+      list: res.data,
+      pageCount: Math.ceil(res.headers['x-total-count'] / 10)
+    });
   }
 
   async updateOptions(option, value) {
@@ -69,8 +85,23 @@ export default class App extends Component {
                   list={this.state.list}
                   handleOptions={this.updateOptions}
                   handleReset={this.resetOptions}
+                  pageCount={this.state.pageCount}
+                  handlePageClick={this.handlePageClick}
                 />
               )}
+            />
+            <ReactPaginate
+              previousLabel={'previous'}
+              nextLabel={'next'}
+              breakLabel={'...'}
+              breakClassName={'break-me'}
+              pageCount={this.state.pageCount}
+              marginPagesDisplayed={2}
+              pageRangeDisplayed={4}
+              onPageChange={this.handlePageClick}
+              containerClassName={'pagination'}
+              subContainerClassName={'pages pagination'}
+              activeClassName={'active'}
             />
           </div>
         </Router>
