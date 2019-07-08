@@ -1,9 +1,13 @@
 .entry {
   display: inline-block;
   /* border-bottom: 1px solid black; */
-  width: 100%;
+  width: 80%;
 }
 
 .entry:nth-child(even) {
   background: rgba(86, 159, 255, 0.151);
+}
+
+.category {
+  display: inline-block;
 }

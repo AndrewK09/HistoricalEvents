@@ -5,7 +5,11 @@ export default class HistoryList extends Component {
   render() {
     return (
       <div>
-        <Form handleOptions={this.props.handleOptions} />
+        <Form
+          handleOptions={this.props.handleOptions}
+          handleReset={this.props.handleReset}
+          list={this.props.list}
+        />
         {this.props.list.map(entry => {
           return <HistoryEntry key={entry.description} entry={entry} />;
         })}
