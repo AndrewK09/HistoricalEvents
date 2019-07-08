@@ -1,0 +1,39 @@
+{
+  "name": "package",
+  "version": "1.0.0",
+  "description": "Historical Events Finder",
+  "main": "index.js",
+  "scripts": {
+    "react-dev": "webpack -d --watch",
+    "server-dev": "nodemon server/index.js",
+    "start": "webpack -d --watch & nodemon server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Andrewkn09/HistoricalEvents.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Andrewkn09/HistoricalEvents/issues"
+  },
+  "homepage": "https://github.com/Andrewkn09/HistoricalEvents#readme",
+  "devDependencies": {
+    "webpack": "^4.35.2",
+    "webpack-cli": "^3.3.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "@babel/core": "^7.5.0",
+    "@babel/preset-env": "^7.5.0"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongodb": "^3.2.7",
+    "mongoose": "^5.6.3",
+    "nodemon": "^1.19.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
+}
