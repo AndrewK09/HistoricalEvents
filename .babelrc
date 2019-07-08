@@ -1,11 +1,11 @@
 {
-  "presets": [
+  "plugins": [
     [
-      "@babel/preset-env",
+      "transform-runtime",
       {
-        "modules": false
+        "polyfill": false,
+        "regenerator": true
       }
-    ],
-    "@babel/preset-react"
+    ]
   ]
 }
