@@ -72,9 +72,9 @@ export default class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className='container-fluid'>
         <Router>
-          <div className='container'>
+          <div>
             <Header />
             <Route
               exact
@@ -100,8 +100,10 @@ export default class App extends Component {
               pageRangeDisplayed={4}
               onPageChange={this.handlePageClick}
               containerClassName={'pagination'}
-              subContainerClassName={'pages pagination'}
-              activeClassName={'active'}
+              pageClassName={'page-item'}
+              pageLinkClassName={'page-link'}
+              previousClassName={'page-link'}
+              nextClassName={'page-link'}
             />
           </div>
         </Router>

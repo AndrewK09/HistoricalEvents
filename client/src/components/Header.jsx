@@ -5,17 +5,15 @@ export default class Header extends Component {
   render() {
     return (
       <div>
-        <nav>
-          <div className='nav-wrapper'>
-            <Link to='/' className='left brand-logo'>
-              Home
-            </Link>
-            <ul className='right'>
-              <li>
-                <a>Favorites</a>
-              </li>
-            </ul>
-          </div>
+        <nav className='headers'>
+          <ul>
+            <li>
+              <Link to='/'>Home</Link>
+            </li>
+            <li>
+              <Link to='/'>Favorites</Link>
+            </li>
+          </ul>
         </nav>
       </div>
     );

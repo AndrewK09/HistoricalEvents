@@ -11,7 +11,11 @@ export default class HistoryList extends Component {
           list={this.props.list}
         />
         {this.props.list.map(entry => {
-          return <HistoryEntry key={entry.description} entry={entry} />;
+          return (
+            <div className='entry'>
+              <HistoryEntry key={entry.description} entry={entry} />
+            </div>
+          );
         })}
       </div>
     );

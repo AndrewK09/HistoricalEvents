@@ -81,54 +81,61 @@ export default class Form extends Component {
   }
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
+      <div className='form-group'>
+        <form className='search' onSubmit={this.handleSubmit}>
           <label>
-            Search by:
             <input
+              className='search-input'
               type='text'
               name='query'
               value={this.state.query}
               onChange={this.handleChange}
+              placeholder='Search By...'
             />
           </label>
-          <label className='category'>
-            Category1:
-            <select
-              value={this.state.selected1}
-              name='selected1'
-              onChange={this.handleSelect}
-            >
-              <option value=''>No Filter</option>
-
-              {this.state.category1.map((category, i) => {
-                return (
-                  <option key={i} value={category}>
-                    {category}
-                  </option>
-                );
-              })}
-            </select>
-          </label>
-          <label className='category'>
-            Category2:
-            <select
-              value={this.state.selected2}
-              name='selected2'
-              onChange={this.handleSelect}
-            >
-              <option value=''>No Filter</option>
-              {this.state.category2.map((category, i) => {
-                return (
-                  <option key={i} value={category}>
-                    {category}
-                  </option>
-                );
-              })}
-            </select>
-          </label>
         </form>
-        <button onClick={this.handleClick}>Reset</button>
+        <div className='filter'>
+          <form>
+            <label className='category1'>
+              Category1:
+              <select
+                value={this.state.selected1}
+                name='selected1'
+                onChange={this.handleSelect}
+              >
+                <option value=''>No Filter</option>
+
+                {this.state.category1.map((category, i) => {
+                  return (
+                    <option key={i} value={category}>
+                      {category}
+                    </option>
+                  );
+                })}
+              </select>
+            </label>
+            <label className='category2'>
+              Category2:
+              <select
+                value={this.state.selected2}
+                name='selected2'
+                onChange={this.handleSelect}
+              >
+                <option value=''>No Filter</option>
+                {this.state.category2.map((category, i) => {
+                  return (
+                    <option key={i} value={category}>
+                      {category}
+                    </option>
+                  );
+                })}
+              </select>
+            </label>
+            <button className='reset' onClick={this.handleClick} type='button'>
+              Reset
+            </button>
+          </form>
+        </div>
       </div>
     );
   }
