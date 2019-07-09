@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 export default class HistoryEntry extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      set: []
-    };
+    this.state = {};
 
     this.handleClick = this.handleClick.bind(this);
   }
 
-  componentDidMount() {}
-
   handleClick(e) {
     e.preventDefault();
+    //make axios post request to add new favorite
+    //pass in user, setname, entry
     console.log(this.props.entry);
   }
 
@@ -24,7 +23,7 @@ export default class HistoryEntry extends Component {
     //update set
   }
   render() {
-    const { entry } = this.props;
+    const { entry, sets } = this.props;
     return (
       <div>
         <div className='row justify-content-md-center'>
@@ -33,8 +32,13 @@ export default class HistoryEntry extends Component {
             <button className='dropbtn'>&#9734;</button>
             <div className='dropdown-content'>
               <a onClick={this.handleNewSet}>New Set</a>
-              <a onClick={this.handleClick}>Link 2</a>
-              <a onClick={this.handleClick}>Link 3</a>
+              {sets.map(set => {
+                return (
+                  <a key={set._id} onClick={this.handleClick}>
+                    {set.setname}
+                  </a>
+                );
+              })}
             </div>
           </div>
         </div>

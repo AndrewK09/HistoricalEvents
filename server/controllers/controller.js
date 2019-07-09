@@ -23,6 +23,15 @@ module.exports = {
       .catch(err => handleError(err, res));
   },
   addFavorite: (req, res) => {
+    if (req.body.favorite) {
+      model
+        .updateFavorite(req.body)
+        .then(() => {
+          res.send('success');
+        })
+        .catch(err => res.send('fail'));
+      return;
+    }
     model
       .addFavorite(req.body)
       .then(result => {
