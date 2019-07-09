@@ -55,6 +55,7 @@ export default class HistoryList extends Component {
           pageLinkClassName={'page-link'}
           previousClassName={'page-link'}
           nextClassName={'page-link'}
+          activeClassName={'page-item active'}
         />
       </div>
     );
