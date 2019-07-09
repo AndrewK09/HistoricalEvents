@@ -7,20 +7,27 @@ export default class HistoryEntry extends Component {
     this.state = {};
 
     this.handleClick = this.handleClick.bind(this);
+    this.handleNewSet = this.handleNewSet.bind(this);
   }
 
   handleClick(e) {
     e.preventDefault();
-    //make axios post request to add new favorite
-    //pass in user, setname, entry
-    console.log(this.props.entry);
+    axios.post('/api/favorites', {
+      username: this.props.username,
+      setname: e.target.name,
+      favorite: this.props.entry
+    });
   }
 
-  handleNewSet() {
-    let set = prompt('Enter new set');
-    console.log(set);
-    //add new set to db
-    //update set
+  async handleNewSet() {
+    const { username, handleUpdate, entry: favorite } = this.props;
+    let setname = prompt('Add to new set');
+    await axios.post('/api/favorites', {
+      username,
+      setname,
+      favorite
+    });
+    handleUpdate();
   }
   render() {
     const { entry, sets } = this.props;
@@ -31,11 +38,11 @@ export default class HistoryEntry extends Component {
           <div className='dropdown col-md-auto text-right'>
             <button className='dropbtn'>&#9734;</button>
             <div className='dropdown-content'>
-              <a onClick={this.handleNewSet}>New Set</a>
+              <a onClick={this.handleNewSet}>Add to New Set</a>
               {sets.map(set => {
                 return (
-                  <a key={set._id} onClick={this.handleClick}>
-                    {set.setname}
+                  <a key={set} name={set} onClick={this.handleClick}>
+                    {set}
                   </a>
                 );
               })}

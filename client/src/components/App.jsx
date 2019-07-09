@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import ReactPaginate from 'react-paginate';
+
 import axios from 'axios';
 
 import Header from './Header.jsx';
 import HistoryList from './HistoryList.jsx';
+import Favorites from './Favorites.jsx';
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +17,8 @@ export default class App extends Component {
       sortBy: '',
       selected1: '',
       selected2: '',
-      pageCount: 0
+      pageCount: 0,
+      username: 'andrew'
     };
     this.updatePage = this.updatePage.bind(this);
     this.updateOptions = this.updateOptions.bind(this);
@@ -87,23 +89,15 @@ export default class App extends Component {
                   handleReset={this.resetOptions}
                   pageCount={this.state.pageCount}
                   handlePageClick={this.handlePageClick}
+                  username={this.state.username}
                 />
               )}
             />
-            <ReactPaginate
-              previousLabel={'previous'}
-              nextLabel={'next'}
-              breakLabel={'...'}
-              breakClassName={'break-me'}
-              pageCount={this.state.pageCount}
-              marginPagesDisplayed={2}
-              pageRangeDisplayed={4}
-              onPageChange={this.handlePageClick}
-              containerClassName={'pagination'}
-              pageClassName={'page-item'}
-              pageLinkClassName={'page-link'}
-              previousClassName={'page-link'}
-              nextClassName={'page-link'}
+            <Route
+              path='/favorites'
+              render={props => (
+                <Favorites {...props} username={this.state.username} />
+              )}
             />
           </div>
         </Router>

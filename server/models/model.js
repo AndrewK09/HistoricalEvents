@@ -2,12 +2,11 @@ const Favorites = require('../../db/index.js').favorites;
 // const Sets = require('../../db/index.js').sets;
 
 module.exports = {
-  addSet: set => {
-    console.log(set);
-    return Sets.create(set);
+  addSet: favorite => {
+    return Favorites.create(favorite);
   },
   getSets: () => {
-    return Favorites.find({}, 'setname');
+    return Favorites.distinct('setname');
   },
   addFavorite: favorite => {
     return Favorites.create(favorite);
@@ -15,10 +14,8 @@ module.exports = {
   getFavorites: () => {
     return Favorites.find();
   },
-  updateFavorite: ({ username, setname, favorite }) => {
-    return Favorites.findOneAndUpdate(
-      { username, setname },
-      { $push: { favorites: favorite } }
-    );
+
+  deleteFavorite: id => {
+    return Favorites.deleteOne(id);
   }
 };

@@ -11,16 +11,10 @@ db.once('open', function() {
 
 const favoritesSchema = new mongoose.Schema({
   username: String,
-  setname: { type: String, unique: true },
-  favorites: Array
+  setname: String,
+  favorite: Object
 });
 
-// const setsSchema = new mongoose.Schema({
-//   setname: { type: String, unique: true }
-// });
-
 const Favorites = mongoose.model('Favorite', favoritesSchema);
-// const Sets = mongoose.model('Set', setsSchema);
 
 module.exports.favorites = Favorites;
-// module.exports.sets = Sets;

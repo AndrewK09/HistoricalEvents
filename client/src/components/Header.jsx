@@ -11,7 +11,7 @@ export default class Header extends Component {
               <Link to='/'>Home</Link>
             </li>
             <li>
-              <Link to='/'>Favorites</Link>
+              <Link to='/favorites'>Favorites</Link>
             </li>
           </ul>
         </nav>

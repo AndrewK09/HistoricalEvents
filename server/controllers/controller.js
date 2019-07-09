@@ -9,7 +9,7 @@ module.exports = {
   addSet: (req, res) => {
     model
       .addSet(req.body)
-      .then(() => {
+      .then(result => {
         res.send('success');
       })
       .catch(err => handleError(err, res));
@@ -23,21 +23,12 @@ module.exports = {
       .catch(err => handleError(err, res));
   },
   addFavorite: (req, res) => {
-    if (req.body.favorite) {
-      model
-        .updateFavorite(req.body)
-        .then(() => {
-          res.send('success');
-        })
-        .catch(err => res.send('fail'));
-      return;
-    }
     model
       .addFavorite(req.body)
-      .then(result => {
+      .then(() => {
         res.send('success');
       })
-      .catch(err => handleError(err, res));
+      .catch(err => res.send('fail'));
   },
   getFavorites: (req, res) => {
     model
@@ -46,5 +37,13 @@ module.exports = {
         res.send(result);
       })
       .catch(err => handleError(err, res));
+  },
+  deleteFavorite: (req, res) => {
+    model
+      .deleteFavorite(req.body)
+      .then(() => {
+        res.send('success');
+      })
+      .catch(err => res.send('fail'));
   }
 };
