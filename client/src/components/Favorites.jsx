@@ -63,9 +63,9 @@ export default class Favorites extends Component {
   render() {
     return (
       <div>
-        <div>
+        <div className='sets'>
           <form>
-            <label className='sets'>
+            <label>
               Set:
               <select value={this.state.setname} onChange={this.handleSelect}>
                 <option value=''>All sets</option>

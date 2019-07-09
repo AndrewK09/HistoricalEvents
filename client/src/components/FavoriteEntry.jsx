@@ -5,16 +5,17 @@ const FavoriteEntry = ({ entry, handleRemove }) => {
     <div>
       <div className='row justify-content-md-center'>
         <h4 className='col'>Date: {entry.favorite.date}</h4>
-        <button
-          className='col-md-auto text-right'
-          onClick={() => {
-            handleRemove(entry._id);
-          }}
-        >
-          X
-        </button>
+        <div className='dropdown col-md-auto text-right'>
+          <button
+            className='dropbtn'
+            onClick={() => {
+              handleRemove(entry._id);
+            }}
+          >
+            X
+          </button>
+        </div>
       </div>
-
       <h4>Description: {entry.favorite.description}</h4>
     </div>
   );

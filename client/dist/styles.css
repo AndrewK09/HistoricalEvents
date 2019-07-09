@@ -172,3 +172,10 @@
 .dropdown:hover .dropbtn {
   background-color: rgb(151, 192, 253);
 }
+
+/* Favorites */
+
+.sets {
+  width: 80%;
+  margin: 0 10%;
+}
